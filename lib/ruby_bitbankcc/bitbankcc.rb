@@ -25,13 +25,13 @@ class Bitbankcc
 
   def read_balance
     path = "/v1/user/assets"
-    nonce = Time.now.to_i.to_s
+    nonce = DateTime.now.strftime('%Q').to_s
     request_for_get(path, nonce)
   end
 
   def read_active_orders(pair, count = nil, from_id = nil, end_id = nil, since = nil, _end = nil)
     path = "/v1/user/spot/active_orders"
-    nonce = Time.now.to_i.to_s
+    nonce = DateTime.now.strftime('%Q').to_s
     params = {
       pair: pair,
       count: count,
@@ -45,7 +45,7 @@ class Bitbankcc
 
   def create_order(pair, amount, price, side, type)
     path = "/v1/user/spot/order"
-    nonce = Time.now.to_i.to_s
+    nonce = DateTime.now.strftime('%Q').to_s
     body = {
       pair: pair,
       amount: amount,
@@ -58,7 +58,7 @@ class Bitbankcc
 
   def cancel_order(pair, order_id)
     path = "/v1/user/spot/cancel_order"
-    nonce = Time.now.to_i.to_s
+    nonce = DateTime.now.strftime('%Q').to_s
     body = {
       pair: pair,
       order_id: order_id
@@ -68,7 +68,7 @@ class Bitbankcc
 
   def read_trade_history(pair, count = nil, order_id = nil, since = nil, _end = nil, order = nil)
     path = "/v1/user/spot/trade_history"
-    nonce = Time.now.to_i.to_s
+    nonce = DateTime.now.strftime('%Q').to_s
     params = {
       pair: pair,
       count: count,
@@ -83,7 +83,7 @@ class Bitbankcc
 
   def read_withdrawal_account(asset)
     path = "/v1/user/withdrawal_account"
-    nonce = Time.now.to_i.to_s
+    nonce = DateTime.now.strftime('%Q').to_s
     params = {
       asset: asset
     }.compact
@@ -93,7 +93,7 @@ class Bitbankcc
 
   def request_withdrawal(asset, uuid, amount, otp_token = nil, sms_token = nil)
     path = "/v1/user/request_withdrawal"
-    nonce = Time.now.to_i.to_s
+    nonce = DateTime.now.strftime('%Q').to_s
     body = {
       asset: asset,
       uuid: uuid,
